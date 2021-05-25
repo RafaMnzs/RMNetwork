@@ -10,6 +10,9 @@
 		BABDFC9C265C67EF00981835 /* RMNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABDFC92265C67EE00981835 /* RMNetwork.framework */; };
 		BABDFCA1265C67EF00981835 /* RMNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDFCA0265C67EF00981835 /* RMNetworkTests.swift */; };
 		BABDFCA3265C67EF00981835 /* RMNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = BABDFC95265C67EE00981835 /* RMNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BABDFCAD265C681D00981835 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDFCAC265C681D00981835 /* Request.swift */; };
+		BABDFCAF265C6CA800981835 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDFCAE265C6CA800981835 /* Service.swift */; };
+		BABDFCB1265C6D3D00981835 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDFCB0265C6D3D00981835 /* Dispatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		BABDFC9B265C67EF00981835 /* RMNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RMNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABDFCA0265C67EF00981835 /* RMNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMNetworkTests.swift; sourceTree = "<group>"; };
 		BABDFCA2265C67EF00981835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BABDFCAC265C681D00981835 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		BABDFCAE265C6CA800981835 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BABDFCB0265C6D3D00981835 /* Dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				BABDFC95265C67EE00981835 /* RMNetwork.h */,
 				BABDFC96265C67EE00981835 /* Info.plist */,
+				BABDFCAC265C681D00981835 /* Request.swift */,
+				BABDFCAE265C6CA800981835 /* Service.swift */,
+				BABDFCB0265C6D3D00981835 /* Dispatcher.swift */,
 			);
 			path = RMNetwork;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				TargetAttributes = {
 					BABDFC91265C67EE00981835 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					BABDFC9A265C67EF00981835 = {
 						CreatedOnToolsVersion = 12.5;
@@ -194,6 +204,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BABDFCAD265C681D00981835 /* Request.swift in Sources */,
+				BABDFCAF265C6CA800981835 /* Service.swift in Sources */,
+				BABDFCB1265C6D3D00981835 /* Dispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 		BABDFCA7265C67EF00981835 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 58F5TZKM4B;
@@ -357,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafamnzs.RMNetwork;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +380,7 @@
 		BABDFCA8265C67EF00981835 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 58F5TZKM4B;
@@ -389,6 +405,7 @@
 		BABDFCAA265C67EF00981835 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58F5TZKM4B;
 				INFOPLIST_FILE = RMNetworkTests/Info.plist;
@@ -407,6 +424,7 @@
 		BABDFCAB265C67EF00981835 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 58F5TZKM4B;
 				INFOPLIST_FILE = RMNetworkTests/Info.plist;
