@@ -13,11 +13,12 @@ public class Service: Dispatcher {
         var config = NSMutableURLRequest()
         config.addValue("application/json", forHTTPHeaderField: "Accept")
         config.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        header(header: request.header, config: &config)
+        
         switch request.method {
         case .GET:
             config.httpMethod = "GET"
-            queryParams(config: &config, query: request.query)
+            query(query: request.params, config: &config)
         case .POST:
             config.httpMethod = "POST"
             config.httpBody = try? JSONSerialization.data(withJSONObject: request.body, options: .prettyPrinted)
@@ -26,19 +27,22 @@ public class Service: Dispatcher {
             config.httpBody = try? JSONSerialization.data(withJSONObject: request.body, options: .prettyPrinted)
         case .DELETE:
             config.httpMethod = "DELETE"
+            config.httpBody = try? JSONSerialization.data(withJSONObject: request.body, options: .prettyPrinted)
         }
         
         let session = URLSession.shared
-        session.dataTask(with: config as URLRequest, completionHandler: { data, _, error  in
+        session.dataTask(with: config as URLRequest, completionHandler: { data, response, error  in
             if error != nil {
-                completion(.failure(error!))
+                if let err = error {
+                    completion(.failure(err))
+                }
                 return
             }
             DispatchQueue.main.async {
                 do {
                     guard let data = data else { return }
-                    let response = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(response))
+                    let content = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(content))
                 } catch {
                     completion(.failure(error))
                 }
@@ -49,19 +53,18 @@ public class Service: Dispatcher {
 
 private extension Service {
     
-    private func header(config: inout NSMutableURLRequest, params: [String: AnyHashable]?) {
-        guard let params = params else { return }
+    private func header(header: [String: AnyHashable]?, config: inout NSMutableURLRequest) {
+        guard let params = header else { return }
         for (key, value) in params {
-            config.addValue("\(value)", forHTTPHeaderField: key)
+            config.addValue(value.description, forHTTPHeaderField: key)
         }
     }
     
-    private func queryParams(config: inout NSMutableURLRequest, query: [String: AnyHashable]?) {
+    private func query(query: [String: AnyHashable]?, config: inout NSMutableURLRequest) {
         guard let queries = query else { return }
+        var components = URLComponents()
         for (key, value) in queries {
-            print(key)
-            print(value)
+            components.queryItems?.append(URLQueryItem(name: key.description, value: value.description))
         }
     }
-
 }

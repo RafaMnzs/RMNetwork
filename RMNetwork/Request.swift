@@ -19,7 +19,6 @@ public protocol Request {
     var path: String { get set }
     var method: Method { get set }
     var body: AnyHashable { get set }
-    var query: [String: AnyHashable]? { get set }
     var params: [String: AnyHashable]? { get set }
     var header: [String: AnyHashable]? { get set }
 }
