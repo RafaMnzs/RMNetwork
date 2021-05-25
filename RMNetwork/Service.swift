@@ -10,11 +10,10 @@ import Foundation
 public class Service: Dispatcher {
     
     func execute<T: Codable>(_ request: Request, to type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
-        
         var config = NSMutableURLRequest()
         config.addValue("application/json", forHTTPHeaderField: "Accept")
         config.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         switch request.method {
         case .GET:
             config.httpMethod = "GET"
@@ -35,7 +34,6 @@ public class Service: Dispatcher {
                 completion(.failure(error!))
                 return
             }
-            
             DispatchQueue.main.async {
                 do {
                     guard let data = data else { return }
@@ -45,7 +43,6 @@ public class Service: Dispatcher {
                     completion(.failure(error))
                 }
             }
-
         }).resume()
     }
 }
